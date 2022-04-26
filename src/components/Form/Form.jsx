@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Form.module.css";
 
 import Button from "../Button/Button";
+import Input from "../Input/Input";
 
 function Form() {
   return (
@@ -9,22 +10,10 @@ function Form() {
       <div>
         <h1>Contact Form</h1>
       </div>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input id="name" type="text" placeholder="Name" />
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" placeholder="Email" />
-      </div>
-      <div>
-        <label htmlFor="tel">Mobile No.</label>
-        <input id="tel" type="tel" placeholder="Mobile No." />
-      </div>
-      <div>
-        <label htmlFor="address">Address</label>
-        <input id="address" type="address" placeholder="Address" />
-      </div>
+      <Input name="Name" id="name" type="text" placeholder="Name" />
+      <Input name="Email" id="email" type="email" placeholder="Email" />
+      <Input name="Mobile No." id="tel" type="tel" placeholder="Mobile No." />
+      <Input name="Address" id="address" type="address" placeholder="Address" />
       <div>
         <Button type="submit">Submit</Button>
       </div>
