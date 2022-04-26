@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1rem;
+  align-items: center;
+  position: fixed;
+  min-height: 5rem;
+  width: 20rem;
+  padding: 1rem;
+  background-color: #fff;
+}
