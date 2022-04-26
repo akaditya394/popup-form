@@ -3,7 +3,7 @@ import styles from "./Form.module.css";
 
 import Button from "../Button/Button";
 
-function Form(props) {
+function Form() {
   const nameRef = useRef();
   const emailRef = useRef();
   const mobileRef = useRef();
@@ -11,11 +11,13 @@ function Form(props) {
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const submitHandler = (event) => {
+  const submitHandler = () => {
     var name = nameRef.current.value;
     var email = emailRef.current.value;
     var mobile = mobileRef.current.value;
     var address = addressRef.current.value;
+
+    //validation logic
 
     if (name.length === 0) {
       alert("Name field is required!");
