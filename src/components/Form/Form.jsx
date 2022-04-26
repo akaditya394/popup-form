@@ -1,83 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./Form.module.css";
 
 import Button from "../Button/Button";
-import Input from "../Input/Input";
-import Error from "../Error/Error";
 
 function Form(props) {
-  const [inputDetail, setInputDetail] = useState({
-    inputName: "",
-    inputEmail: "",
-    inputMobile: "",
-    inputAddress: "",
-  });
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const mobileRef = useRef();
+  const addressRef = useRef();
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const nameChangeHandler = (e) => {
-    if (e.target.value.length > 0) {
-      setInputDetail((prevState) => {
-        return { ...prevState, inputName: e.target.value };
-      });
-    }
-  };
-
-  const emailChangeHandler = (e) => {
-    if (e.target.value.length > 0) {
-      setInputDetail((prevState) => {
-        return { ...prevState, inputEmail: e.target.value };
-      });
-    }
-  };
-
-  const mobileChangeHandler = (e) => {
-    if (e.target.value.length > 0) {
-      setInputDetail((prevState) => {
-        return { ...prevState, inputMobile: e.target.value };
-      });
-    }
-  };
-
-  const addressChangeHandler = (e) => {
-    if (e.target.value.length > 0) {
-      setInputDetail((prevState) => {
-        return { ...prevState, inputAddress: e.target.value };
-      });
-    }
-  };
-
   const submitHandler = (event) => {
-    console.log(inputDetail);
-    console.log(formIsValid);
+    var name = nameRef.current.value;
+    var email = emailRef.current.value;
+    var mobile = mobileRef.current.value;
+    var address = addressRef.current.value;
+
+    if (name.length === 0) {
+      alert("Name field is required!");
+    }
+
+    if (email.length === 0) {
+      alert("Email field is required!");
+    }
+    if (!email.includes("@")) {
+      alert("Enter a valid email address!");
+    }
+
+    if (mobile.length === 0) {
+      alert("Mobile Number is required!");
+    }
+
+    if (address.length === 0) {
+      alert("Address field is required!");
+    }
 
     if (
-      inputDetail.inputName.length > 0 &&
-      inputDetail.inputEmail.length > 0 &&
-      inputDetail.inputMobile.length > 0 &&
-      inputDetail.inputAddress.length > 0
+      name.length > 0 &&
+      email.length > 0 &&
+      mobile.length > 0 &&
+      address.length > 0
     ) {
       setFormIsValid(true);
+    } else {
+      alert("All fields are mandatory!");
     }
 
     if (formIsValid) {
       alert(
-        inputDetail.inputName +
-          " " +
-          inputDetail.inputEmail +
-          " " +
-          inputDetail.inputMobile +
-          " " +
-          inputDetail.inputAddress
+        "Entered Name: " +
+          name +
+          "\n" +
+          "Entered Email ID: " +
+          email +
+          "\n" +
+          "Entered Mobile No. " +
+          mobile +
+          "\n" +
+          "Entered Address: " +
+          address
       );
-
-      setInputDetail({
-        inputName: "",
-        inputEmail: "",
-        inputMobile: "",
-        inputAddress: "",
-      });
-
       setFormIsValid(false);
     }
   };
@@ -87,45 +70,36 @@ function Form(props) {
       <div>
         <h1>Contact Form</h1>
       </div>
-      <Input
-        onChange={nameChangeHandler}
-        value={inputDetail.inputName}
+      <input
+        ref={nameRef}
         name="Name"
         id="name"
         type="text"
         placeholder="Name"
       />
-      <Input
-        onChange={emailChangeHandler}
-        value={inputDetail.inputEmail}
+      <input
+        ref={emailRef}
         name="Email"
         id="email"
         type="email"
         placeholder="Email"
       />
-      <Input
-        onChange={mobileChangeHandler}
-        value={inputDetail.inputMobile}
+      <input
+        ref={mobileRef}
         name="Mobile No."
         id="tel"
-        type="tel"
+        type="number"
         placeholder="Mobile No."
       />
-      <Input
-        onChange={addressChangeHandler}
-        value={inputDetail.inputAddress}
+      <input
+        ref={addressRef}
         name="Address"
         id="address"
         type="address"
         placeholder="Address"
       />
       <div>
-        <Button
-          onClick={() => {
-            submitHandler();
-          }}
-          type="submit"
-        >
+        <Button onClick={submitHandler} type="submit">
           Submit
         </Button>
       </div>
