@@ -3,7 +3,7 @@ import styles from "./Modal.module.css";
 
 import Form from "../Form/Form";
 
-function Modal() {
+function Modal(props) {
   return (
     <div className={styles.main}>
       <Form />
